@@ -1,12 +1,48 @@
-import {StyleSheet, Text, View, Dimensions, ScrollView} from 'react-native';
-import React, {useEffect} from 'react';
-import Searchbar from './Searchbar';
-import MusicCard from './MusicCard';
-import {useGetTopChartsQuery} from '../redux/services/shazamCore';
-import Loader from './Loader';
-import Error from './Error';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  ScrollView,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import Searchbar from '../atoms/Searchbar';
+import MusicCard from '../cards/MusicCard';
+import {useGetTopChartsQuery} from '../../redux/services/shazamCore';
+import Loader from '../atoms/Loader';
+import Error from '../atoms/Error';
 import {useDispatch, useSelector} from 'react-redux';
-import {discoverMusic} from '../utils/musicData';
+import {discoverMusic, artistsData, playListData} from '../../utils/musicData';
+import ArtistCard from '../cards/ArtistCard';
+import TrackPlayer, {Track} from 'react-native-track-player';
+
+const TopArtist = () => {
+  const [focused, setFocused] = useState(false);
+
+  const handleFocus = () => {
+    setFocused(true);
+  };
+
+  const handleBlur = () => {
+    setFocused(false);
+  };
+
+  return (
+    <View style={styles.topArtistView}>
+      <Text style={styles.title}>Top Artists</Text>
+      <FlatList
+        showsHorizontalScrollIndicator={false}
+        style={styles.artistCardView}
+        horizontal={true}
+        data={artistsData}
+        renderItem={({item}) => <ArtistCard artistData={item} />}
+        keyExtractor={item => item.id}
+      />
+    </View>
+  );
+};
 
 const Section = () => {
   const dispatch = useDispatch();
@@ -36,19 +72,23 @@ const Section = () => {
   //   );
   // }
 
+  // TrackPlayer.play();
+  // console.log('track', TrackPlayer.getActiveTrack());
+
   return (
     <View style={styles.sectionView}>
       <Searchbar />
-      {/* <Text style={styles.sectionTitle}>
+      <TopArtist />
+      <Text style={styles.sectionTitle}>
         Showing results for <Text style={styles.sectionInnerTitle}>hello</Text>
-      </Text> */}
-      {/* <ScrollView showsVerticalScrollIndicator={false}> */}
+      </Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.musicCardView}>
-          {(searchData).map((song, i) => {
+          {playListData.map((track, i) => {
             return (
               <MusicCard
-                key={song?.id}
-                song={song}
+                key={track?.id}
+                track={track}
                 isPlaying={isPlaying}
                 activeSong={activeSong}
                 data={discoverMusic}
@@ -57,7 +97,7 @@ const Section = () => {
             );
           })}
         </View>
-      {/* </ScrollView> */}
+      </ScrollView>
     </View>
   );
 };
@@ -91,4 +131,12 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     rowGap: 24,
   },
+  topArtistView: {
+    marginVertical: 20,
+    gap: 20,
+  },
+  title: {
+    color: '#eee',
+  },
+  artistCardView: {},
 });

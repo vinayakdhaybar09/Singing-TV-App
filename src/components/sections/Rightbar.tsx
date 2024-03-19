@@ -8,9 +8,10 @@ import {
   FlatList,
 } from 'react-native';
 import React, {useState} from 'react';
-import ChartsCard from './ChartsCard';
-import ArtistCard from './ArtistCard';
-import {artistsData, topMusic} from '../utils/musicData';
+import ChartsCard from '../cards/ChartsCard';
+import ArtistCard from '../cards/ArtistCard';
+import {artistsData, playListData, topMusic} from '../../utils/musicData';
+import Player from '../player/Player';
 
 const gap = 5;
 
@@ -40,52 +41,19 @@ const TopCharts = () => {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.chartsCardView}>
-          {
-            topMusic?.map((data, i)=>{
-              return(
-                <ChartsCard song={data} data={topMusic} i={i} setIsPress={setIsPress} isPress={isPress}/>
-              )
-            })
-          }
+          {playListData?.map((data, i) => {
+            return (
+              <ChartsCard
+                song={data}
+                data={topMusic}
+                i={i}
+                setIsPress={setIsPress}
+                isPress={isPress}
+              />
+            );
+          })}
         </View>
       </ScrollView>
-    </View>
-  );
-};
-
-const TopArtist = () => {
-  const [focused, setFocused] = useState(false);
-  // console.log(artistsData);
-
-  const handleFocus = () => {
-    setFocused(true);
-  };
-
-  const handleBlur = () => {
-    setFocused(false);
-  };
-
-  return (
-    <View style={styles.topArtistView}>
-      <View style={styles.titleView}>
-        <Text style={styles.title}>Top Artists</Text>
-        <TouchableOpacity
-          activeOpacity={1}
-          onFocus={handleFocus}
-          onBlur={handleBlur}>
-          <Text style={[styles.seeMore, focused && styles.focusedSeeMore]}>
-            See more
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <FlatList
-        showsHorizontalScrollIndicator={false}
-        style={styles.artistCardView}
-        horizontal={true}
-        data={artistsData}
-        renderItem={({item}) => <ArtistCard artistData={item} />}
-        keyExtractor={item => item.id}
-      />
     </View>
   );
 };
@@ -93,8 +61,8 @@ const TopArtist = () => {
 const Rightbar = () => {
   return (
     <View style={styles.rightBarView}>
+      <Player />
       <TopCharts />
-      <TopArtist />
     </View>
   );
 };
@@ -115,11 +83,7 @@ const styles = StyleSheet.create({
   topChartsView: {
     marginVertical: 20,
     gap: 24,
-    height: windowHeight * 0.48,
-  },
-  topArtistView: {
-    marginVertical: 20,
-    gap: 24,
+    height: windowHeight * 0.58,
   },
   titleView: {
     flexDirection: 'row',
@@ -138,7 +102,5 @@ const styles = StyleSheet.create({
   chartsCardView: {
     gap: 8,
     overflow: 'hidden',
-  },
-  artistCardView: {
   },
 });

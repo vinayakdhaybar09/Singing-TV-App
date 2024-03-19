@@ -2,9 +2,10 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {useDispatch, useSelector} from 'react-redux';
-import {playPause, setActiveSong} from '../redux/features/playerSlice';
+import {playPause, setActiveSong} from '../../redux/features/playerSlice';
 import Entypo from 'react-native-vector-icons/Entypo';
-
+import TrackPlayer from 'react-native-track-player';
+import MarqueeText from 'react-native-text-ticker';
 
 const ChartsCard = ({song, i, data, setIsPress, isPress}) => {
   const dispatch = useDispatch();
@@ -19,15 +20,19 @@ const ChartsCard = ({song, i, data, setIsPress, isPress}) => {
     setFocused(false);
   };
 
-  const handlePress = () => {
+  const handlePress = async () => {
     if (isPlaying && activeSong.title === song.title) {
       dispatch(playPause(false));
     } else {
       dispatch(playPause(true));
       dispatch(setActiveSong({song, data, i}));
     }
-  };
 
+    if (song) {
+      await TrackPlayer.skip(song.id - 1);
+      await TrackPlayer.play();
+    }
+  };
 
   return (
     <TouchableOpacity
@@ -46,6 +51,15 @@ const ChartsCard = ({song, i, data, setIsPress, isPress}) => {
       <View>
         <Text style={styles.songName}>{song?.title}</Text>
         <Text style={styles.songArtist}>{song?.artistName}</Text>
+
+        <MarqueeText
+          style={styles.songArtist}
+          duration={20000}
+          loop
+          repeatSpacer={100}
+          marqueeDelay={1000}>
+          {song?.artistName}
+        </MarqueeText>
       </View>
       {isPlaying && activeSong.title === song.title ? (
         <Entypo

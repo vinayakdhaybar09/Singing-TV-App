@@ -1,24 +1,18 @@
 import {
   Animated,
-  Button,
   Dimensions,
   Image,
-  ScrollView,
   StyleSheet,
-  Text,
-  Touchable,
-  TouchableHighlight,
-  TouchableNativeFeedback,
   TouchableOpacity,
   View,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
-// import logo from '../assets/logo.png';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {discoverMusic, favourite, worldwide} from '../utils/musicData';
+import {discoverMusic, favourite, worldwide} from '../../utils/musicData';
 import {useDispatch, useSelector} from 'react-redux';
-import {serchInput, setActiveTab} from '../redux/features/playerSlice';
-import Temp from './Temp';
+import {serchInput, setActiveTab} from '../../redux/features/playerSlice';
+import {Screens} from '../../navigation/Navigation';
+import {useNavigation} from '@react-navigation/native';
 
 const menuData = [
   {
@@ -26,34 +20,37 @@ const menuData = [
     iconSvg: 'home',
     title: 'Discover',
     itemData: discoverMusic,
+    navigateTo: "Home",
   },
   {
     id: 2,
     iconSvg: 'earth',
     title: 'Worldwide',
     itemData: worldwide,
+    navigateTo: "settings",
   },
   {
     id: 3,
     iconSvg: 'hearto',
     title: 'Favourite',
     itemData: favourite,
+    navigateTo: "favourite",
   },
   {
     id: 4,
     iconSvg: 'setting',
     title: 'Settings',
     itemData: discoverMusic,
+    navigateTo: "favourite",
   },
 ];
 
 const SidebarMenu = ({data}) => {
+  const navigation = useNavigation();
   const dispatch = useDispatch();
   const [focused, setFocused] = useState(false);
   const animatedFontSize = new Animated.Value(16);
   const {activeTab} = useSelector(state => state.palyer);
-
-
 
   const handleFocus = () => {
     setFocused(true);
@@ -64,8 +61,9 @@ const SidebarMenu = ({data}) => {
   };
 
   const handlePress = () => {
-    dispatch(serchInput(data.itemData));
-    dispatch(setActiveTab(data.title));
+    navigation.navigate(data.navigateTo);
+    // dispatch(serchInput(data.itemData));
+    // dispatch(setActiveTab(data.title));
   };
 
   const handlePressIn = () => {
@@ -94,11 +92,9 @@ const SidebarMenu = ({data}) => {
   return (
     <TouchableOpacity
       activeOpacity={1}
-      onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
       onFocus={handleFocus}
       onBlur={handleBlur}
-      onPress={() => handlePress()}
+      onPress={handlePress}
       style={styles.menuBtn}>
       <Icon
         name={data.iconSvg}
@@ -127,7 +123,7 @@ const SideBar = () => {
   }, []);
   return (
     <View style={styles.sidebarView}>
-      <Image source={require('../assets/logo.png')} style={styles.logo} />
+      <Image source={require('../../assets/logo.png')} style={styles.logo} />
       <View style={styles.menuView}>
         {menuData.map((data, index) => {
           return (
@@ -140,7 +136,6 @@ const SideBar = () => {
           );
         })}
       </View>
-      {/* <Temp/> */}
     </View>
   );
 };

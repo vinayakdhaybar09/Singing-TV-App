@@ -1,9 +1,9 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import SideBar from '../components/Sidebar';
-import Section from '../components/Section';
-import Rightbar from '../components/Rightbar';
-import Player from '../components/Player';
+import SideBar from '../components/sections/Sidebar';
+import Section from '../components/sections/Section';
+import Rightbar from '../components/sections/Rightbar';
+import Player from '../components/player/Player';
 
 const Home = () => {
   return (
@@ -11,9 +11,6 @@ const Home = () => {
       <SideBar />
       <Section />
       <Rightbar />
-      <View style={styles.playerFooterView}>
-        <Player />
-      </View>
     </View>
   );
 };

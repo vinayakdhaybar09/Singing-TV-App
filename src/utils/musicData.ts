@@ -1,32 +1,33 @@
-export const discoverMusic = [
+import {Track} from 'react-native-track-player';
+
+export const playListData: Track[] = [
   {
     id: 1,
-    title: 'Challeya 1',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
-    artistName: 'Honey Singh',
+    title: 'Pehle Bhi Main',
+    url: require('../assets/Pehle.mp3'),
+    artistName: 'Vishal Mishra',
     songPoster:
-      'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
+      'https://pagalnew.com/coverimages/Pehle-Bhi-Main-ANIMAL-500-500.jpg',
   },
   {
     id: 2,
-    title: 'Shiva',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
-    artistName: 'Honey Singh',
+    title: 'Channa Ve',
+    url: require('../assets/Channa.mp3'),
+    artistName: 'Akhil Sachdeva, Mansheel Gujral',
     songPoster:
-      'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
+      'https://pagalnew.com/coverimages/Channa-Ve-Bhoot-Part-One:-The-Haunted-Ship-500-500.jpg',
   },
   {
     id: 3,
-    title: 'Challeya 3',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
-    artistName: 'Honey Singh',
-    songPoster:
-      'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
+    title: 'Khaab',
+    url: require('../assets/Khaab.mp3'),
+    artistName: 'Akhil',
+    songPoster: 'https://pagalnew.com/coverimages/Khaab-Akhil-500-500.jpg',
   },
   {
     id: 4,
     title: 'Challeya 4',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -34,7 +35,7 @@ export const discoverMusic = [
   {
     id: 5,
     title: 'Challeya 5',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -42,7 +43,7 @@ export const discoverMusic = [
   {
     id: 6,
     title: 'Challeya 6',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -50,7 +51,7 @@ export const discoverMusic = [
   {
     id: 7,
     title: 'Challeya 7',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -58,7 +59,7 @@ export const discoverMusic = [
   {
     id: 8,
     title: 'Challeya 8',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -66,7 +67,7 @@ export const discoverMusic = [
   {
     id: 9,
     title: 'Challeya 9',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -74,7 +75,7 @@ export const discoverMusic = [
   {
     id: 10,
     title: 'Challeya 10',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -82,7 +83,7 @@ export const discoverMusic = [
   {
     id: 11,
     title: 'Challeya 11',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -90,7 +91,105 @@ export const discoverMusic = [
   {
     id: 12,
     title: 'Challeya 12',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    artistName: 'Honey Singh',
+    songPoster:
+      'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
+  },
+];
+
+export const discoverMusic = [
+  {
+    id: 1,
+    title: 'Pehle Bhi Main',
+    url: require('../assets/Pehle.mp3'),
+    artistName: 'Vishal Mishra',
+    songPoster:
+      'https://pagalnew.com/coverimages/Pehle-Bhi-Main-ANIMAL-500-500.jpg',
+  },
+  {
+    id: 2,
+    title: 'Channa Ve',
+    url: require('../assets/Channa.mp3'),
+    artistName: 'Akhil Sachdeva, Mansheel Gujral',
+    songPoster:
+      'https://pagalnew.com/coverimages/Channa-Ve-Bhoot-Part-One:-The-Haunted-Ship-500-500.jpg',
+  },
+  {
+    id: 3,
+    title: 'Khaab',
+    url: require('../assets/Khaab.mp3'),
+    artistName: 'Akhil',
+    songPoster: 'https://pagalnew.com/coverimages/Khaab-Akhil-500-500.jpg',
+  },
+  {
+    id: 4,
+    title: 'Challeya 4',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    artistName: 'Honey Singh',
+    songPoster:
+      'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
+  },
+  {
+    id: 5,
+    title: 'Challeya 5',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    artistName: 'Honey Singh',
+    songPoster:
+      'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
+  },
+  {
+    id: 6,
+    title: 'Challeya 6',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    artistName: 'Honey Singh',
+    songPoster:
+      'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
+  },
+  {
+    id: 7,
+    title: 'Challeya 7',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    artistName: 'Honey Singh',
+    songPoster:
+      'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
+  },
+  {
+    id: 8,
+    title: 'Challeya 8',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    artistName: 'Honey Singh',
+    songPoster:
+      'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
+  },
+  {
+    id: 9,
+    title: 'Challeya 9',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    artistName: 'Honey Singh',
+    songPoster:
+      'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
+  },
+  {
+    id: 10,
+    title: 'Challeya 10',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    artistName: 'Honey Singh',
+    songPoster:
+      'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
+  },
+  {
+    id: 11,
+    title: 'Challeya 11',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    artistName: 'Honey Singh',
+    songPoster:
+      'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
+  },
+  {
+    id: 12,
+    title: 'Challeya 12',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -101,7 +200,7 @@ export const worldwide = [
   {
     id: 1,
     title: 'World wide 1',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -109,7 +208,7 @@ export const worldwide = [
   {
     id: 2,
     title: 'Shiva',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -117,7 +216,7 @@ export const worldwide = [
   {
     id: 3,
     title: 'Challeya 3',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -125,7 +224,7 @@ export const worldwide = [
   {
     id: 4,
     title: 'Challeya 4',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -133,7 +232,7 @@ export const worldwide = [
   {
     id: 5,
     title: 'Challeya 5',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -141,7 +240,7 @@ export const worldwide = [
   {
     id: 6,
     title: 'Challeya 6',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -149,7 +248,7 @@ export const worldwide = [
   {
     id: 7,
     title: 'Challeya 7',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -157,7 +256,7 @@ export const worldwide = [
   {
     id: 8,
     title: 'Challeya 8',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -165,7 +264,7 @@ export const worldwide = [
   {
     id: 9,
     title: 'Challeya 9',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -173,7 +272,7 @@ export const worldwide = [
   {
     id: 10,
     title: 'Challeya 10',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -181,7 +280,7 @@ export const worldwide = [
   {
     id: 11,
     title: 'Challeya 11',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -189,7 +288,7 @@ export const worldwide = [
   {
     id: 12,
     title: 'Challeya 12',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -200,7 +299,7 @@ export const favourite = [
   {
     id: 1,
     title: 'Favourite 1',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -208,7 +307,7 @@ export const favourite = [
   {
     id: 2,
     title: 'Shiva',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -216,7 +315,7 @@ export const favourite = [
   {
     id: 3,
     title: 'Challeya 3',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -224,7 +323,7 @@ export const favourite = [
   {
     id: 4,
     title: 'Challeya 4',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -232,7 +331,7 @@ export const favourite = [
   {
     id: 5,
     title: 'Challeya 5',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -240,7 +339,7 @@ export const favourite = [
   {
     id: 6,
     title: 'Challeya 6',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -248,7 +347,7 @@ export const favourite = [
   {
     id: 7,
     title: 'Challeya 7',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -256,7 +355,7 @@ export const favourite = [
   {
     id: 8,
     title: 'Challeya 8',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -264,7 +363,7 @@ export const favourite = [
   {
     id: 9,
     title: 'Challeya 9',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -272,7 +371,7 @@ export const favourite = [
   {
     id: 10,
     title: 'Challeya 10',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -280,7 +379,7 @@ export const favourite = [
   {
     id: 11,
     title: 'Challeya 11',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -288,7 +387,7 @@ export const favourite = [
   {
     id: 12,
     title: 'Challeya 12',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -305,7 +404,7 @@ export const artistsData = [
       {
         id: 1,
         title: 'Challeya 1',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -313,7 +412,7 @@ export const artistsData = [
       {
         id: 2,
         title: 'Challeya 2',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -321,7 +420,7 @@ export const artistsData = [
       {
         id: 3,
         title: 'Challeya 3',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -329,7 +428,7 @@ export const artistsData = [
       {
         id: 4,
         title: 'Challeya 4',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -337,7 +436,7 @@ export const artistsData = [
       {
         id: 5,
         title: 'Challeya 5',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -353,7 +452,7 @@ export const artistsData = [
       {
         id: 1,
         title: 'Challeya 1',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -361,7 +460,7 @@ export const artistsData = [
       {
         id: 2,
         title: 'Challeya 2',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -369,7 +468,7 @@ export const artistsData = [
       {
         id: 3,
         title: 'Challeya 3',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -377,7 +476,7 @@ export const artistsData = [
       {
         id: 4,
         title: 'Challeya 4',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -385,7 +484,7 @@ export const artistsData = [
       {
         id: 5,
         title: 'Challeya 5',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -401,7 +500,7 @@ export const artistsData = [
       {
         id: 1,
         title: 'Challeya 1',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -409,7 +508,7 @@ export const artistsData = [
       {
         id: 2,
         title: 'Challeya 2',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -417,7 +516,7 @@ export const artistsData = [
       {
         id: 3,
         title: 'Challeya 3',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -425,7 +524,7 @@ export const artistsData = [
       {
         id: 4,
         title: 'Challeya 4',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -433,7 +532,7 @@ export const artistsData = [
       {
         id: 5,
         title: 'Challeya 5',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -449,7 +548,7 @@ export const artistsData = [
       {
         id: 1,
         title: 'Challeya 1',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -457,7 +556,7 @@ export const artistsData = [
       {
         id: 2,
         title: 'Challeya 2',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -465,7 +564,7 @@ export const artistsData = [
       {
         id: 3,
         title: 'Challeya 3',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -473,7 +572,7 @@ export const artistsData = [
       {
         id: 4,
         title: 'Challeya 4',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -481,7 +580,7 @@ export const artistsData = [
       {
         id: 5,
         title: 'Challeya 5',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -497,7 +596,7 @@ export const artistsData = [
       {
         id: 1,
         title: 'Challeya 1',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -505,7 +604,7 @@ export const artistsData = [
       {
         id: 2,
         title: 'Challeya 2',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -513,7 +612,7 @@ export const artistsData = [
       {
         id: 3,
         title: 'Challeya 3',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -521,7 +620,7 @@ export const artistsData = [
       {
         id: 4,
         title: 'Challeya 4',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -529,7 +628,7 @@ export const artistsData = [
       {
         id: 5,
         title: 'Challeya 5',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -545,7 +644,7 @@ export const artistsData = [
       {
         id: 1,
         title: 'Challeya 1',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -553,7 +652,7 @@ export const artistsData = [
       {
         id: 2,
         title: 'Challeya 2',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -561,7 +660,7 @@ export const artistsData = [
       {
         id: 3,
         title: 'Challeya 3',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -569,7 +668,7 @@ export const artistsData = [
       {
         id: 4,
         title: 'Challeya 4',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -577,7 +676,7 @@ export const artistsData = [
       {
         id: 5,
         title: 'Challeya 5',
-        songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+        url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
         artistName: 'Honey Singh',
         songPoster:
           'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -590,7 +689,7 @@ export const topMusic = [
   {
     id: 1,
     title: 'Top Music',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -598,7 +697,7 @@ export const topMusic = [
   {
     id: 2,
     title: 'Challeya 2',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -606,7 +705,7 @@ export const topMusic = [
   {
     id: 3,
     title: 'Challeya 3',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -614,7 +713,7 @@ export const topMusic = [
   {
     id: 4,
     title: 'Challeya 4',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -622,7 +721,7 @@ export const topMusic = [
   {
     id: 5,
     title: 'Challeya 5',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -630,7 +729,7 @@ export const topMusic = [
   {
     id: 6,
     title: 'Challeya 6',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -638,7 +737,7 @@ export const topMusic = [
   {
     id: 7,
     title: 'Challeya 7',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -646,7 +745,7 @@ export const topMusic = [
   {
     id: 8,
     title: 'Challeya 8',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -654,7 +753,7 @@ export const topMusic = [
   {
     id: 9,
     title: 'Challeya 9',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -662,7 +761,7 @@ export const topMusic = [
   {
     id: 10,
     title: 'Challeya 10',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -670,7 +769,7 @@ export const topMusic = [
   {
     id: 11,
     title: 'Challeya 11',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',
@@ -678,7 +777,7 @@ export const topMusic = [
   {
     id: 12,
     title: 'Challeya 12',
-    songUrl: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
+    url: 'https://dl.espressif.com/dl/audio/ff-16b-1c-44100hz.mp3',
     artistName: 'Honey Singh',
     songPoster:
       'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg',

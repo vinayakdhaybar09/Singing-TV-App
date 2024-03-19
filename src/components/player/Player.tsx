@@ -1,9 +1,14 @@
 import {StyleSheet, Text, View, Image, Animated, Easing} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {PropsWithChildren, useEffect, useState} from 'react';
 import PlayerOption from './PlayerOption';
 import {useSelector} from 'react-redux';
+import TrackPlayer, {Event, Track, useTrackPlayerEvents} from 'react-native-track-player';
 
-const ArtistInfo = ({activeSong}) => {
+type SongInfoProps = PropsWithChildren<{
+  track: Track | null | undefined;
+}>;
+
+const ArtistInfo = ({track}: SongInfoProps) => {
   const [spinAnim, setSpinAnim] = useState(new Animated.Value(0));
   const spin = spinAnim.interpolate({
     inputRange: [0, 1],
@@ -20,6 +25,7 @@ const ArtistInfo = ({activeSong}) => {
       }),
     ).start();
   });
+
   return (
     <View style={styles.artistInfoView}>
       <Animated.Image
@@ -29,22 +35,30 @@ const ArtistInfo = ({activeSong}) => {
         style={[styles.cardImg, {transform: [{rotate: spin}]}]}
       />
       <View>
-        <Text style={styles.songName}>{activeSong?.title}</Text>
-        <Text style={styles.songArtist}>{activeSong?.artistName}</Text>
+        <Text style={styles.songName}>{track?.title}</Text>
+        <Text style={styles.songArtist}>{track?.artistName}</Text>
       </View>
     </View>
   );
 };
 
 const Player = () => {
-  const {activeSong, isPlaying} = useSelector(state => state.palyer);
+  const [track, setTrack] = useState<Track | null>();
 
+  useTrackPlayerEvents([Event.PlaybackTrackChanged], async event => {
+    switch (event.type) {
+      case Event.PlaybackTrackChanged:
+        const playingTrack = await TrackPlayer.getTrack(event.nextTrack);
+        setTrack(playingTrack);
+        break;
+    }
+  });
   return (
     <>
-      {activeSong?.title && (
+      {track && (
         <View style={styles.playerView}>
-          <ArtistInfo activeSong={activeSong} />
-          <PlayerOption activeSong={activeSong} />
+          <ArtistInfo track={track} />
+          <PlayerOption activeSong={track} />
         </View>
       )}
     </>
@@ -56,18 +70,13 @@ export default Player;
 const styles = StyleSheet.create({
   playerView: {
     backgroundColor: 'rgba(32, 34, 83, 0.9)',
-    height: 80,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 40,
-    justifyContent: 'space-between',
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
+    padding: 10,
+    borderRadius: 10,
+    gap: 10,
   },
   artistInfoView: {
-    flexDirection: 'row',
     alignItems: 'center',
-    gap: 20,
+    gap: 10,
   },
   cardImg: {
     width: 50,
@@ -77,9 +86,11 @@ const styles = StyleSheet.create({
 
   songName: {
     color: '#eee',
+    textAlign:"center"
   },
   songArtist: {
     color: '#949494',
     fontSize: 12,
+    textAlign:"center"                                                                                     
   },
 });

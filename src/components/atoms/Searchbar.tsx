@@ -7,9 +7,9 @@ import {
 } from 'react-native';
 import React, {useState, useRef} from 'react';
 import Icon from 'react-native-vector-icons/Fontisto';
-import {discoverMusic} from '../utils/musicData';
+import {discoverMusic} from '../../utils/musicData';
 import {useDispatch, useSelector} from 'react-redux';
-import {serchInput} from '../redux/features/playerSlice';
+import {serchInput} from '../../redux/features/playerSlice';
 
 const Searchbar = () => {
   const searchRef = useRef<TextInput | undefined>();
@@ -65,7 +65,7 @@ const Searchbar = () => {
         placeholder="Search"
         placeholderTextColor={'#eee'}
         onChangeText={text => {
-          console.log(text);
+          // console.log(text);
         }}
         onKeyPress={e => e.preventDefault()}
         onSubmitEditing={handleSearch}
