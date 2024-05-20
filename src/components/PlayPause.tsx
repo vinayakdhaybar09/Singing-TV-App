@@ -8,8 +8,8 @@ const PlayPause = ({handlePlay, handlePause, song, activeSong, isPlaying}) => {
   const playBackState = usePlaybackState();
 
 
-  console.log('playBackState', playBackState);
-  console.log('State', State.Playing);
+  // console.log('playBackState', playBackState);
+  // console.log('State', State.Playing);
 
   return (
     <View style={styles.playPauseiew}>

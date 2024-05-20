@@ -14,10 +14,10 @@ export async function setupPlayer() {
   }
 }
 
-export async function addTrack(){
-    await TrackPlayer.add(playListData)
-    await TrackPlayer.setRepeatMode(RepeatMode.Queue)
-}
+// export async function addTrack(){
+//     await TrackPlayer.add(playListData)
+//     await TrackPlayer.setRepeatMode(RepeatMode.Queue)
+// }
 
 export async function playbackService() {
   TrackPlayer.addEventListener(Event.RemotePause, () => {

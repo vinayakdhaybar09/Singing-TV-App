@@ -5,47 +5,44 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
+  findNodeHandle,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, MutableRefObject, useRef} from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {discoverMusic, favourite, worldwide} from '../../utils/musicData';
 import {useDispatch, useSelector} from 'react-redux';
-import {serchInput, setActiveTab} from '../../redux/features/playerSlice';
+import {setActiveTab} from '../../redux/features/playerSlice';
 import {Screens} from '../../navigation/Navigation';
 import {useNavigation} from '@react-navigation/native';
 
 const menuData = [
   {
     id: 1,
-    iconSvg: 'home',
-    title: 'Discover',
-    itemData: discoverMusic,
-    navigateTo: "Home",
+    iconSvg: 'search1',
+    title: 'Search',
+    navigateTo: 'Search',
   },
   {
     id: 2,
-    iconSvg: 'earth',
-    title: 'Worldwide',
-    itemData: worldwide,
-    navigateTo: "settings",
+    iconSvg: 'home',
+    title: 'Discover',
+    navigateTo: 'Home',
   },
   {
     id: 3,
     iconSvg: 'hearto',
     title: 'Favourite',
-    itemData: favourite,
-    navigateTo: "favourite",
+    navigateTo: 'Favourite',
   },
   {
     id: 4,
-    iconSvg: 'setting',
-    title: 'Settings',
-    itemData: discoverMusic,
-    navigateTo: "favourite",
+    iconSvg: 'user',
+    title: 'Profile',
+    navigateTo: 'Profile',
   },
 ];
 
 const SidebarMenu = ({data}) => {
+  const sideBarRef = useRef(null);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [focused, setFocused] = useState(false);
@@ -62,8 +59,7 @@ const SidebarMenu = ({data}) => {
 
   const handlePress = () => {
     navigation.navigate(data.navigateTo);
-    // dispatch(serchInput(data.itemData));
-    // dispatch(setActiveTab(data.title));
+    dispatch(setActiveTab(data.title));
   };
 
   const handlePressIn = () => {
@@ -89,13 +85,30 @@ const SidebarMenu = ({data}) => {
     fontSize: animatedFontSize,
   };
 
+  const useNodeHandle = (ref: MutableRefObject<null>) => {
+    const [nodeHandle, setNodeHandle] = useState<number | null>(null);
+
+    useEffect(() => {
+      if (ref?.current) {
+        setNodeHandle(findNodeHandle(ref?.current));
+      }
+    }, [ref]);
+    return nodeHandle;
+  };
+
+  const focusRef = useNodeHandle(sideBarRef);
+
+  const refDown = focused && data.id === 4 ? focusRef : null;
+
   return (
     <TouchableOpacity
+      ref={sideBarRef}
       activeOpacity={1}
       onFocus={handleFocus}
       onBlur={handleBlur}
       onPress={handlePress}
-      style={styles.menuBtn}>
+      style={styles.menuBtn}
+      nextFocusDown={refDown || undefined}>
       <Icon
         name={data.iconSvg}
         size={16}
@@ -103,7 +116,6 @@ const SidebarMenu = ({data}) => {
       />
       <Animated.Text
         style={[
-          // styles.menuText,
           activeTab === data.title ? styles.focusedMenuText : styles.menuText,
           focused && animatedStyle,
         ]}>
@@ -116,9 +128,7 @@ const SidebarMenu = ({data}) => {
 const SideBar = () => {
   const dispatch = useDispatch();
 
-  // const [focused, setFocused] = useState(false);
   useEffect(() => {
-    dispatch(serchInput(menuData[0].itemData));
     dispatch(setActiveTab(menuData[0].title));
   }, []);
   return (
@@ -130,8 +140,6 @@ const SideBar = () => {
             <SidebarMenu
               data={data}
               key={index}
-              // setFocused={setFocused}
-              // focused={focused}
             />
           );
         })}
@@ -143,12 +151,12 @@ const SideBar = () => {
 export default SideBar;
 
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   sidebarView: {
-    // flex: 1,
     width: windowWidth * 0.15,
-    // alignItems: 'center',
+    height: windowHeight,
     backgroundColor: '#0E114e',
     paddingHorizontal: 20,
   },
@@ -177,6 +185,6 @@ const styles = StyleSheet.create({
     // fontSize: 18,
   },
   menuText: {
-    color: '#d1d1d1',
+    color: '#eee',
   },
 });

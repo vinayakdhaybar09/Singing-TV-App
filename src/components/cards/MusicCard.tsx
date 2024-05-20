@@ -13,14 +13,16 @@ import PlayPause from '../PlayPause';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import TrackPlayer, {State, usePlaybackState} from 'react-native-track-player';
+import TrackPlayer, {
+  State,
+  Track,
+  usePlaybackState,
+} from 'react-native-track-player';
 
-const MusicCard = ({track, isPlaying, activeSong, data, i}) => {
-  // console.log('track', track);
+const MusicCard = ({track}) => {
 
   const [focused, setFocused] = useState(false);
-  const [activeTrack, setActiveTrack] = useState();
-  const dispatch = useDispatch();
+  const [activeTrack, setActiveTrack] = useState<Track | undefined>();
   const playBackState = usePlaybackState();
 
   const getCurrentTrack = async () => {
@@ -32,8 +34,6 @@ const MusicCard = ({track, isPlaying, activeSong, data, i}) => {
     getCurrentTrack();
   }, []);
 
-  // console.log('activeTrack', activeTrack.id, track.id);
-
   const handleFocus = () => {
     setFocused(true);
   };
@@ -42,14 +42,6 @@ const MusicCard = ({track, isPlaying, activeSong, data, i}) => {
     setFocused(false);
   };
 
-  const handlePauseClick = () => {
-    dispatch(playPause(false));
-  };
-
-  const handlePlayClick = () => {
-    dispatch(setActiveSong({track, data, i}));
-    dispatch(playPause(true));
-  };
 
   const togglePlayBack = async (playBack: State) => {
     const currentTrack = await TrackPlayer.getCurrentTrack();
@@ -63,10 +55,12 @@ const MusicCard = ({track, isPlaying, activeSong, data, i}) => {
   };
 
   const handlePress = async () => {
-    if (track) {
-      await TrackPlayer.skip(track.id - 1);
-      await TrackPlayer.play();
+    let trackObject = await TrackPlayer.getTrack(0);
+    if (trackObject !== null) {
+      await TrackPlayer.remove(0);
     }
+    await TrackPlayer.add([track])
+    
 
     togglePlayBack(playBackState.state);
   };
@@ -78,40 +72,31 @@ const MusicCard = ({track, isPlaying, activeSong, data, i}) => {
       onBlur={handleBlur}
       style={[styles.musicCardView, focused && styles.focusedMusicCardView]}
       onPress={handlePress}>
-      <View style={styles.imageView}>
-        <Image
-          source={{
-            uri: `${track.songPoster}`,
-          }}
-          style={[styles.cardImage, focused && styles.focusedImageView]}
-        />
-        {/* {!focused && track?.id === activeTrack?.id ? (
-          <View style={styles.playPausView}>
-            <Ionicons name={'musical-notes'} size={40} color="#eee" />
-          </View>
-        ) : null} */}
-
+      <ImageBackground
+        source={{
+          uri: `${track?.images[0]?.url}`,
+        }}
+        style={[styles.cardImage, focused && styles.focusedImageView]}>
         {focused && (
           <View style={styles.playPausView}>
-            {/* <TouchableOpacity
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              onPress={() => togglePlayBack(playBackState.state)}> */}
             <Entypo
               name={
                 playBackState.state === State.Playing
                   ? 'controller-paus'
                   : 'controller-play'
               }
-              size={18}
+              size={50}
               color="#eee"
             />
-            {/* </TouchableOpacity> */}
           </View>
         )}
-      </View>
-      <Text style={styles.songName}>{track?.title}</Text>
-      <Text style={styles.songArtist}>{track?.artistName}</Text>
+      </ImageBackground>
+      <Text numberOfLines={1} style={styles.songName}>
+        {track?.name}
+      </Text>
+      <Text numberOfLines={1} style={styles.songArtist}>
+        {track?.artists[0].name}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -120,20 +105,23 @@ export default MusicCard;
 
 const styles = StyleSheet.create({
   musicCardView: {
-    width: '30%',
+    width: 170,
     backgroundColor: '#202253',
     padding: 10,
     borderRadius: 4,
     borderWidth: 2,
     borderColor: 'transparent',
+    opacity:0.7
   },
   focusedMusicCardView: {
     borderWidth: 2,
     borderColor: '#2c8eb0',
   },
   cardImage: {
-    aspectRatio: 1,
+    height: 170,
     borderRadius: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   songName: {
     color: '#eee',
@@ -149,16 +137,15 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   focusedImageView: {
-    opacity: 0.5,
+    // opacity: 0.5,
   },
   playPausView: {
-    position: 'absolute',
-    // marginLeft:0,
-    // marginRight:0
-
-    top: '40%',
-    bottom: 0,
-    left: '40%',
-    right: 0,
+    // position: 'absolute',
+    // // marginLeft:0,
+    // // marginRight:0
+    // top: '40%',
+    // bottom: 0,
+    // left: '40%',
+    // right: 0,
   },
 });

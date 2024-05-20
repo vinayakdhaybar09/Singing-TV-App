@@ -7,15 +7,19 @@ import {
 } from 'react-native';
 import React, {useState, useRef} from 'react';
 import Icon from 'react-native-vector-icons/Fontisto';
-import {discoverMusic} from '../../utils/musicData';
 import {useDispatch, useSelector} from 'react-redux';
-import {serchInput} from '../../redux/features/playerSlice';
 
-const Searchbar = () => {
-  const searchRef = useRef<TextInput | undefined>();
-  const [searchInput, setSearchInput] = useState('');
+const Searchbar = ({
+  searchInput,
+  setSearchInput,
+}: {
+  searchInput: string;
+  setSearchInput: (text: string) => void;
+}) => {
+  const searchRef = useRef<TextInput>();
   const [focused, setFocused] = useState(false);
-  const {searchData} = useSelector(state => state.palyer);
+  const [inputText, setInputText] = useState("")
+  
 
   const dispatch = useDispatch();
 
@@ -27,24 +31,14 @@ const Searchbar = () => {
     setFocused(false);
   };
 
-  const handleSearch = () => {
-    // Perform search or any other action here
-    // console.log('Search:', searchInput);
+  const handleSearch = (event: { nativeEvent: { text: string } }) => {
+    const { text } = event.nativeEvent;
+    console.log('Enter key pressed, value:', text);
+    setSearchInput(text)
   };
 
-  // const matchingSongs = discoverMusic.filter(song =>
-  //   song.title.toLowerCase().includes(searchInput.toLowerCase())
-  // );
-
-  const handleSearchInput = text => {
-    setSearchInput(text);
-    // console.log(text);
-    const matchingSongs = searchData.filter(song =>
-      song.title.toLowerCase().includes(text.toLowerCase()),
-    );
-
-    // console.log(matchingSongs);
-    dispatch(serchInput(matchingSongs));
+  const handleSearchInput = (text: string) => {
+    setInputText(text);
   };
 
   return (
@@ -55,19 +49,15 @@ const Searchbar = () => {
       activeOpacity={1}
       onFocus={handleFocus}
       onBlur={handleBlur}
-      // onKeyPress={e => console.log('key press : ', e)}
       style={[styles.searchbarView, focused && styles.focusedSearchbarView]}>
       <Icon name="search" size={16} color="#fff" />
       <TextInput
         ref={searchRef}
         style={styles.searchText}
-        // value={searchInput}
+        value={inputText}
         placeholder="Search"
         placeholderTextColor={'#eee'}
-        onChangeText={text => {
-          // console.log(text);
-        }}
-        onKeyPress={e => e.preventDefault()}
+        onChangeText={handleSearchInput}
         onSubmitEditing={handleSearch}
       />
     </TouchableOpacity>
@@ -82,8 +72,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
     backgroundColor: '#202253',
-    // marginHorizontal: 20,
-    // marginVertical: 10,
     paddingHorizontal: 10,
     borderRadius: 10,
   },

@@ -1,16 +1,9 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
-import Icon from 'react-native-vector-icons/AntDesign';
-import {useDispatch, useSelector} from 'react-redux';
-import {playPause, setActiveSong} from '../../redux/features/playerSlice';
-import Entypo from 'react-native-vector-icons/Entypo';
 import TrackPlayer from 'react-native-track-player';
-import MarqueeText from 'react-native-text-ticker';
 
-const ChartsCard = ({song, i, data, setIsPress, isPress}) => {
-  const dispatch = useDispatch();
+const ChartsCard = ({track}) => {
   const [focused, setFocused] = useState(false);
-  const {activeSong, isPlaying} = useSelector(state => state.palyer);
 
   const handleFocus = () => {
     setFocused(true);
@@ -21,17 +14,24 @@ const ChartsCard = ({song, i, data, setIsPress, isPress}) => {
   };
 
   const handlePress = async () => {
-    if (isPlaying && activeSong.title === song.title) {
-      dispatch(playPause(false));
-    } else {
-      dispatch(playPause(true));
-      dispatch(setActiveSong({song, data, i}));
-    }
+    console.log(" top charts track", track);
+    
+    // if (isPlaying && activeSong.title === track.title) {
+    //   dispatch(playPause(false));
+    // } else {
+    //   dispatch(playPause(true));
+    //   dispatch(setActiveSong({track, data, i}));
+    // }
 
-    if (song) {
-      await TrackPlayer.skip(song.id - 1);
-      await TrackPlayer.play();
+    // if (track) {
+    //   await TrackPlayer.skip(track.id - 1);
+    //   await TrackPlayer.play();
+    // }
+    let trackObject = await TrackPlayer.getTrack(0);
+    if (trackObject !== null) {
+      await TrackPlayer.remove(0);
     }
+    await TrackPlayer.add([track?.album])
   };
 
   return (
@@ -41,27 +41,22 @@ const ChartsCard = ({song, i, data, setIsPress, isPress}) => {
       onFocus={handleFocus}
       onBlur={handleBlur}
       style={[styles.chartsCardView, focused && styles.focusedChartsCardView]}>
-      <Text style={styles.chartsCardSr}>{i + 1}</Text>
       <Image
         source={{
-          uri: song?.songPoster,
+          uri: track?.album?.images[0]?.url,
         }}
         style={styles.cardImg}
       />
       <View>
-        <Text style={styles.songName}>{song?.title}</Text>
-        <Text style={styles.songArtist}>{song?.artistName}</Text>
-
-        <MarqueeText
-          style={styles.songArtist}
-          duration={20000}
-          loop
-          repeatSpacer={100}
-          marqueeDelay={1000}>
-          {song?.artistName}
-        </MarqueeText>
+        <Text numberOfLines={1} style={styles.songName}>
+          {track?.name}
+        </Text>
+        <Text numberOfLines={1} style={styles.songArtist}>
+          {track?.artists[0]?.name}
+        </Text>
       </View>
-      {isPlaying && activeSong.title === song.title ? (
+{/*       
+      {isPlaying && activeSong.title === track.title ? (
         <Entypo
           name="controller-paus"
           size={18}
@@ -75,7 +70,7 @@ const ChartsCard = ({song, i, data, setIsPress, isPress}) => {
           color="#000"
           style={styles.playIcon}
         />
-      )}
+      )} */}
     </TouchableOpacity>
   );
 };
@@ -98,9 +93,6 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 4,
-  },
-  chartsCardSr: {
-    color: '#eee',
   },
   songName: {
     color: '#eee',

@@ -1,44 +1,23 @@
 import {
-  Button,
   StyleSheet,
   Text,
-  Touchable,
   View,
-  TouchableOpacity,
   Slider,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Entypo from 'react-native-vector-icons/Entypo';
-import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-// import Sound from 'react-native-sound';
-import {useDispatch, useSelector} from 'react-redux';
-import {playPause} from '../../redux/features/playerSlice';
 import TrackPlayer, {
   State,
   usePlaybackState,
   useProgress,
 } from 'react-native-track-player';
+import FocusableElement from '../atoms/FocusableElement';
 
 const PlayerButtons = () => {
-  const dispatch = useDispatch();
-  const [focused, setFocused] = useState(false);
-  const {activeSong, isPlaying} = useSelector(state => state.palyer);
-  const audioUrl = activeSong.url;
 
   const playBackState = usePlaybackState();
 
-  // console.log('playBackState', playBackState);
-  // console.log('State', State.Playing);
-
-
-  const skipToNext = async () => {
-    await TrackPlayer.skipToNext();
-  };
-
-  const skipToPrevious = async () => {
-    await TrackPlayer.skipToPrevious();
-  };
 
   const togglePlayBack = async (playBack: State) => {
     const currentTrack = await TrackPlayer.getCurrentTrack();
@@ -55,48 +34,23 @@ const PlayerButtons = () => {
     await TrackPlayer.seekBy(-10);
   };
 
-  const handleForward = async () => {
-    await TrackPlayer.seekBy(10);
-  };
-
-  const handlePlay = () => {
-    if (!isPlaying) {
-      dispatch(playPause(true));
-    }
-  };
-
-  const handlePause = () => {
-    if (isPlaying) {
-      dispatch(playPause(false));
-    }
-  };
-
-  const handleFocus = () => {
-    setFocused(true);
-  };
-
-  const handleBlur = () => {
-    setFocused(false);
-  };
-
   return (
     <View style={styles.playerButtonsView}>
-      <TouchableOpacity
-        onFocus={handleFocus}
-        onBlur={handleBlur}
+      <FocusableElement
+        unFocusedOverrideStyle={styles.optionStyle}
+        onFocusOverrideStyle={styles.focusedOptionStyle}
         onPress={handleRewind}>
         <MaterialIcons name="replay-5" size={16} color="#eee" />
-      </TouchableOpacity>
-      <TouchableOpacity
+      </FocusableElement>
+      {/* <TouchableOpacity
         onPress={skipToPrevious}
         onFocus={handleFocus}
         onBlur={handleBlur}>
         <Material name="skip-previous" size={22} color="#eee" />
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        onFocus={handleFocus}
-        onBlur={handleBlur}
+      </TouchableOpacity> */}
+      <FocusableElement
+        unFocusedOverrideStyle={styles.optionStyle}
+        onFocusOverrideStyle={styles.focusedOptionStyle}
         onPress={() => togglePlayBack(playBackState.state)}>
         <Entypo
           name={
@@ -107,30 +61,27 @@ const PlayerButtons = () => {
           size={18}
           color="#eee"
         />
-      </TouchableOpacity>
+      </FocusableElement>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         // style={[styles.optionStyle, focused && styles.focusedOptionStyle]}
         // activeOpacity={1}
         onPress={skipToNext}
         onFocus={handleFocus}
         onBlur={handleBlur}>
         <Material name="skip-next" size={22} color="#eee" />
-      </TouchableOpacity>
-      <TouchableOpacity
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        onPress={handleForward}>
+      </TouchableOpacity> */}
+      <FocusableElement
+        unFocusedOverrideStyle={styles.optionStyle}
+        onFocusOverrideStyle={styles.focusedOptionStyle}>
         <MaterialIcons name="forward-5" size={16} color="#eee" />
-      </TouchableOpacity>
+      </FocusableElement>
     </View>
   );
 };
 
 const Seekbar = () => {
   const {duration, position} = useProgress();
-
-  // console.log(duration);
 
   return (
     <View style={styles.seekBarView}>
@@ -140,7 +91,7 @@ const Seekbar = () => {
       <View>
         <Slider
           focusable={false}
-          maximumTrackTintColor={'red'}
+          maximumTrackTintColor={'#2c8eb0'}
           minimumTrackTintColor={'#2c8eb0'}
           thumbTintColor={'#2c8eb0'}
           style={{width: 100}}
@@ -174,7 +125,7 @@ const styles = StyleSheet.create({
   },
   playerButtonsView: {
     flexDirection: 'row',
-    gap: 10,
+    gap:4 ,
     alignItems: 'center',
   },
   seekBarView: {
@@ -191,7 +142,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   focusedOptionStyle: {
-    backgroundColor: '#111',
+    backgroundColor: '#2c8eb0',
     padding: 8,
     borderRadius: 50,
   },

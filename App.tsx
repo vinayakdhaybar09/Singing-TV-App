@@ -15,9 +15,9 @@ function App(): JSX.Element {
   async function setup() {
     let isSetup = await setupPlayer();
 
-    if (isSetup) {
-      await addTrack();
-    }
+    // if (isSetup) {
+    //   await addTrack();
+    // }
 
     setIsPlayerReady(isSetup);
   }
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor:"#0E114e"
   },
 });
 

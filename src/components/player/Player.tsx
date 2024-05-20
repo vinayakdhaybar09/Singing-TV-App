@@ -1,7 +1,6 @@
 import {StyleSheet, Text, View, Image, Animated, Easing} from 'react-native';
 import React, {PropsWithChildren, useEffect, useState} from 'react';
 import PlayerOption from './PlayerOption';
-import {useSelector} from 'react-redux';
 import TrackPlayer, {Event, Track, useTrackPlayerEvents} from 'react-native-track-player';
 
 type SongInfoProps = PropsWithChildren<{
@@ -30,13 +29,13 @@ const ArtistInfo = ({track}: SongInfoProps) => {
     <View style={styles.artistInfoView}>
       <Animated.Image
         source={{
-          uri: 'https://daily.jstor.org/wp-content/uploads/2023/01/good_times_with_bad_music_1050x700.jpg',
+          uri: track?.images[0]?.url,
         }}
         style={[styles.cardImg, {transform: [{rotate: spin}]}]}
       />
       <View>
-        <Text style={styles.songName}>{track?.title}</Text>
-        <Text style={styles.songArtist}>{track?.artistName}</Text>
+        <Text style={styles.songName}>{track?.name}</Text>
+        <Text style={styles.songArtist}>{track?.artists[0].name}</Text>
       </View>
     </View>
   );
@@ -60,7 +59,7 @@ const Player = () => {
           <ArtistInfo track={track} />
           <PlayerOption activeSong={track} />
         </View>
-      )}
+      )} 
     </>
   );
 };

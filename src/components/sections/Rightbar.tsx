@@ -7,53 +7,51 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ChartsCard from '../cards/ChartsCard';
 import ArtistCard from '../cards/ArtistCard';
 import {artistsData, playListData, topMusic} from '../../utils/musicData';
 import Player from '../player/Player';
+import axios from 'axios';
+import Sound from 'react-native-sound';
 
-const gap = 5;
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 
 const TopCharts = () => {
-  const [focused, setFocused] = useState(false);
-  const [isPress, setIsPress] = useState(false);
+  const [recommendations, setRecommendations] = useState([]);
 
-  const handleFocus = () => {
-    setFocused(true);
+
+  const getRecomendedSongs = async () => {
+    try {
+      const response = await axios({
+        method: 'get',
+        url: `https://v1.nocodeapi.com/vinayak09/spotify/pNewodHhXlKvuWXm/recommendations?seed_artists=4YRxDV8wJFPHPTeXepOstw&seed_genres=0JQ5DAqbMKFHCxg5H5PtqW&seed_tracks=7yDHHVKLbvDmVw1XXhDDIO&perPage=20`,
+        params: {},
+      });
+
+      setRecommendations(response?.data?.tracks);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleBlur = () => {
-    setFocused(false);
-  };
+  useEffect(() => {
+    getRecomendedSongs();
+  }, []);
+
   return (
     <View style={styles.topChartsView}>
-      <View style={styles.titleView}>
-        <Text style={styles.title}>Top Charts</Text>
-        <TouchableOpacity
-          activeOpacity={1}
-          onFocus={handleFocus}
-          onBlur={handleBlur}>
-          <Text style={[styles.seeMore, focused && styles.focusedSeeMore]}>
-            See more
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.chartsCardView}>
-          {playListData?.map((data, i) => {
-            return (
-              <ChartsCard
-                song={data}
-                data={topMusic}
-                i={i}
-                setIsPress={setIsPress}
-                isPress={isPress}
-              />
-            );
-          })}
-        </View>
-      </ScrollView>
+      <Text style={styles.title}>Top Charts</Text>
+
+      <FlatList
+        style={{height:windowHeight / 2}}
+        showsVerticalScrollIndicator={false}
+        data={recommendations}
+        keyExtractor={(item, i) => i.toString()}
+        renderItem={({item}) => <ChartsCard track={item} />}
+      />
     </View>
   );
 };
@@ -69,13 +67,13 @@ const Rightbar = () => {
 
 export default Rightbar;
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+
 
 const styles = StyleSheet.create({
   rightBarView: {
     backgroundColor: '#121559',
     width: windowWidth * 0.25,
+    height: windowHeight,
     paddingHorizontal: 20,
     paddingVertical: 14,
     padding: 2,
@@ -83,7 +81,7 @@ const styles = StyleSheet.create({
   topChartsView: {
     marginVertical: 20,
     gap: 24,
-    height: windowHeight * 0.58,
+    height: windowHeight,
   },
   titleView: {
     flexDirection: 'row',

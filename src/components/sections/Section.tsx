@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import Searchbar from '../atoms/Searchbar';
 import MusicCard from '../cards/MusicCard';
 import {useGetTopChartsQuery} from '../../redux/services/shazamCore';
 import Loader from '../atoms/Loader';
@@ -17,18 +16,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {discoverMusic, artistsData, playListData} from '../../utils/musicData';
 import ArtistCard from '../cards/ArtistCard';
 import TrackPlayer, {Track} from 'react-native-track-player';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import RecentCard from '../cards/RecentCard';
 
 const TopArtist = () => {
-  const [focused, setFocused] = useState(false);
-
-  const handleFocus = () => {
-    setFocused(true);
-  };
-
-  const handleBlur = () => {
-    setFocused(false);
-  };
-
   return (
     <View style={styles.topArtistView}>
       <Text style={styles.title}>Top Artists</Text>
@@ -45,69 +37,88 @@ const TopArtist = () => {
 };
 
 const Section = () => {
-  const dispatch = useDispatch();
+  const [recentlyplayed, setRecentlyPlayed] = useState([]);
+  const [newRelease, setNewRelease] = useState([]);
 
-  const {activeSong, isPlaying, searchData} = useSelector(
-    state => state.palyer,
-  );
-  // console.log('activeSong', activeSong);
 
-  // console.log(searchData);
+  const getRecentlyPlayed = async () => {
+    try {
+      const response = await axios({
+        method: 'get',
+        url: `https://v1.nocodeapi.com/vinayak09/spotify/pNewodHhXlKvuWXm/recentlyPlayed?limit=6`,
+        params: {},
+      });
 
-  // const {data, isFetching, error} = useGetTopChartsQuery();
+      // console.log('response recent', response?.data?.items);
+      setRecentlyPlayed(response?.data?.items);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getNewReleased = async () => {
+    try {
+      const response = await axios({
+        method: 'get',
+        url: `https://v1.nocodeapi.com/vinayak09/spotify/pNewodHhXlKvuWXm/browse/new?perPage=9`,
+        params: {},
+      });
 
-  // if (isFetching) {
-  //   return (
-  //     <View style={styles.sectionView}>
-  //       <Loader />
-  //     </View>
-  //   );
-  // }
+      // console.log('new release response', response?.data?.albums?.items);
+      setNewRelease(response?.data?.albums?.items);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // if (error) {
-  //   return (
-  //     <View style={styles.sectionView}>
-  //       <Error />
-  //     </View>
-  //   );
-  // }
-
-  // TrackPlayer.play();
-  // console.log('track', TrackPlayer.getActiveTrack());
+  useEffect(() => {
+    getRecentlyPlayed();
+    getNewReleased();
+  }, []);
 
   return (
-    <View style={styles.sectionView}>
-      <Searchbar />
-      <TopArtist />
-      <Text style={styles.sectionTitle}>
-        Showing results for <Text style={styles.sectionInnerTitle}>hello</Text>
-      </Text>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.musicCardView}>
-          {playListData.map((track, i) => {
-            return (
-              <MusicCard
-                key={track?.id}
-                track={track}
-                isPlaying={isPlaying}
-                activeSong={activeSong}
-                data={discoverMusic}
-                i={i}
-              />
-            );
-          })}
-        </View>
-      </ScrollView>
-    </View>
+    <ScrollView>
+      <View style={styles.sectionView}>
+        <Text style={styles.title}>Recently played</Text>
+        <FlatList
+          data={recentlyplayed}
+          contentContainerStyle={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            rowGap: 20,
+          }}
+          keyExtractor={(track, i) => i.toString()}
+          renderItem={({item}) => <RecentCard item={item} />}
+        />
+
+        <Text style={styles.sectionTitle}>New Releases</Text>
+        <FlatList
+          style={{height:windowHeight/1.9}}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            rowGap: 20,
+            flexWrap: 'wrap',
+            width: '100%',      
+          }}
+          data={newRelease}
+          keyExtractor={(item, i) => i.toString()}
+          renderItem={({item}) => <MusicCard track={item} />}
+        />
+      </View>
+    </ScrollView>
   );
 };
 
 export default Section;
 
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
   sectionView: {
-    // flex: 1,
+    height: windowHeight,
     width: windowWidth * 0.6,
     backgroundColor: '#121559',
     paddingHorizontal: 20,
@@ -137,6 +148,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#eee',
+    paddingVertical: 20,
   },
   artistCardView: {},
 });

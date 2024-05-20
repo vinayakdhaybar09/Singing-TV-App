@@ -1,16 +1,11 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
-import SideBar from '../components/sections/Sidebar';
 import Section from '../components/sections/Section';
-import Rightbar from '../components/sections/Rightbar';
-import Player from '../components/player/Player';
 
 const Home = () => {
   return (
     <View style={styles.homePage}>
-      <SideBar />
       <Section />
-      <Rightbar />
     </View>
   );
 };
