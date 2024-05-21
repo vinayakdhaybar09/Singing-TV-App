@@ -14,6 +14,7 @@ import {artistsData, playListData, topMusic} from '../../utils/musicData';
 import Player from '../player/Player';
 import axios from 'axios';
 import Sound from 'react-native-sound';
+import TrackPlayer, { Track } from 'react-native-track-player';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -21,6 +22,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const TopCharts = () => {
   const [recommendations, setRecommendations] = useState([]);
+  const [trackAv, setTrackAv] = useState<Track | null>()
 
 
   const getRecomendedSongs = async () => {
@@ -37,16 +39,23 @@ const TopCharts = () => {
     }
   };
 
+  const isTrack = async ()=>{
+    const trackObject = await TrackPlayer.getTrack(0);
+    setTrackAv(trackObject)
+  }
+
   useEffect(() => {
     getRecomendedSongs();
+    isTrack()
   }, []);
+
 
   return (
     <View style={styles.topChartsView}>
       <Text style={styles.title}>Top Charts</Text>
 
       <FlatList
-        style={{height:windowHeight / 2}}
+        style={{height: trackAv !== null ?  windowHeight / 2 : windowHeight}}
         showsVerticalScrollIndicator={false}
         data={recommendations}
         keyExtractor={(item, i) => i.toString()}

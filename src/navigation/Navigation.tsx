@@ -42,8 +42,9 @@ const LeftDrawer = createDrawerNavigator();
 function LeftDrawerScreen() {
   return (
     <LeftDrawer.Navigator
+    // initialRouteName='Home'
       id="LeftDrawer"
-      drawerContent={props => <SideBar />}
+      drawerContent={props => <SideBar props={props} />}
       screenOptions={{
         drawerPosition: 'left',
         drawerType: 'permanent',

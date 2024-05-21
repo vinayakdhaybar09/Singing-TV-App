@@ -15,17 +15,18 @@ import {Screens} from '../../navigation/Navigation';
 import {useNavigation} from '@react-navigation/native';
 
 const menuData = [
+  
   {
     id: 1,
-    iconSvg: 'search1',
-    title: 'Search',
-    navigateTo: 'Search',
-  },
-  {
-    id: 2,
     iconSvg: 'home',
     title: 'Discover',
     navigateTo: 'Home',
+  },
+  {
+    id: 2,
+    iconSvg: 'search1',
+    title: 'Search',
+    navigateTo: 'Search',
   },
   {
     id: 3,
@@ -125,7 +126,10 @@ const SidebarMenu = ({data}) => {
   );
 };
 
-const SideBar = () => {
+const SideBar = ({props}) => {
+
+  console.log("props", props);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
