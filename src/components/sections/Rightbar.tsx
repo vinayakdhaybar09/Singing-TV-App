@@ -29,7 +29,7 @@ const TopCharts = () => {
     try {
       const response = await axios({
         method: 'get',
-        url: `https://v1.nocodeapi.com/vinayak09/spotify/pNewodHhXlKvuWXm/recommendations?seed_artists=4YRxDV8wJFPHPTeXepOstw&seed_genres=0JQ5DAqbMKFHCxg5H5PtqW&seed_tracks=7yDHHVKLbvDmVw1XXhDDIO&perPage=20`,
+        url: `https://v1.nocodeapi.com/vinayakdhaybar/spotify/TtHzBCCHGUiYlbTl/recommendations?seed_artists=4YRxDV8wJFPHPTeXepOstw&seed_genres=0JQ5DAqbMKFHCxg5H5PtqW&seed_tracks=7yDHHVKLbvDmVw1XXhDDIO&perPage=20`,
         params: {},
       });
 

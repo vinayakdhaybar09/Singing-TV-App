@@ -45,7 +45,7 @@ const Section = () => {
     try {
       const response = await axios({
         method: 'get',
-        url: `https://v1.nocodeapi.com/vinayak09/spotify/pNewodHhXlKvuWXm/recentlyPlayed?limit=6`,
+        url: `https://v1.nocodeapi.com/vinayakdhaybar/spotify/TtHzBCCHGUiYlbTl/recentlyPlayed?limit=6`,
         params: {},
       });
 
@@ -59,7 +59,7 @@ const Section = () => {
     try {
       const response = await axios({
         method: 'get',
-        url: `https://v1.nocodeapi.com/vinayak09/spotify/pNewodHhXlKvuWXm/browse/new?perPage=9`,
+        url: `https://v1.nocodeapi.com/vinayakdhaybar/spotify/TtHzBCCHGUiYlbTl/browse/new?perPage=9`,
         params: {},
       });
 

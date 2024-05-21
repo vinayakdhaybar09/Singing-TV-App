@@ -14,7 +14,7 @@ const Search = () => {
     try {
       const response = await axios({
         method: 'get',
-        url: `https://v1.nocodeapi.com/vinayak09/spotify/pNewodHhXlKvuWXm/search?q=${searchInput}`,
+        url: `https://v1.nocodeapi.com/vinayakdhaybar/spotify/TtHzBCCHGUiYlbTl/search?q=${searchInput}`,
         params: {},
       });
 

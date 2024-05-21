@@ -11,7 +11,7 @@ const Profile = () => {
     try {
       const response = await axios({
         method: 'get',
-        url: `https://v1.nocodeapi.com/vinayak09/spotify/pNewodHhXlKvuWXm/following`,
+        url: `https://v1.nocodeapi.com/vinayakdhaybar/spotify/TtHzBCCHGUiYlbTl/following`,
         params: {},
       });
       // const response = axios.get("https://v1.nocodeapi.com/vinayak09/spotify/pNewodHhXlKvuWXm/following")
